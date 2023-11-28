@@ -32,6 +32,7 @@ class Round:
         self.winner = ""
     
     
+    ########## Player Control ##########
     def fightPlayer(self):
         damage=random.randint(self.player.minDamage, self.player.maxDamage)
         newHp=self.enemy.hp-damage
@@ -43,7 +44,15 @@ class Round:
         if self.enemy.hp <= 0:
             self.winner = f"{self.player.name} est le gagnant !"
             return (self.winner)
+        
+    def basicAttackPlayer(self):
+        print(self.fightPlayer())
+        self.testWinPlayer()
+        if self.winner != "":
+            runBattle = False
 
+
+    ########## Enemy Control ##########
     def fightEnemy(self):
         damage=random.randint(self.enemy.minDamage, self.enemy.maxDamage)
         newHp=self.player.hp-(damage-self.player.armor)
@@ -55,6 +64,12 @@ class Round:
         if self.player.hp <= 0:
             self.winner = f"{self.enemy.name} est le gagnant !"
             return (self.winner)
+
+    def basicAttackEnemy(self):
+        print(self.fightEnemy())
+        self.testWinEnemy()
+        if self.winner != "":
+            runBattle = False
 
 
 

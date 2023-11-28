@@ -1,5 +1,3 @@
-from entity import Entity
-
 class Capacity:
     """
     This class represents all capacitys of the hero.
@@ -10,7 +8,7 @@ class Capacity:
     - multiplicatorArmor (Int): multiplicator of the armor.
     """
 
-    def __init__(self, name, multiplicatorDamage, multiplicatorArmor):
+    def __init__(self, name, multiplicatorDamage):
         """
         Initialize a capacity instance.
 
@@ -22,15 +20,19 @@ class Capacity:
         Returns:
         None
         """
-        self.name = ""
-        self.multiplicatorDamage = multiplicatorDamage
-        self.multiplicatorArmor = multiplicatorArmor
+        self.name = name
+        self.multiplicatorDamage = 3
+        self.multiplicatorArmor = 2
         
-
-    def __str__(self) -> str:
-        return f"stop"
     
 
     def useCapacity (self):
         print("test")
         #trouver dans la doc python le moyen de choisir selon le nom de la capacité envoyé (au lieu d'utiliser des "if")
+
+
+    def Defence(self):
+        print("Defence")
+        #definition defence à trouver
+
+    #faire 3 instances qui sont constantes

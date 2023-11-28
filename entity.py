@@ -8,7 +8,7 @@ class Entity:
     - multiplicatorArmor (Int): multiplicator of the armor.
     """
         
-    def __init__(self, name, hpMax, minDamage, maxDamage, armor, snack):
+    def __init__(self, name, hpMax, minDamage, maxDamage, armorMax = 0, armor = 0, snack = False):
         """
         Initialize a entity instance.
 
@@ -30,6 +30,7 @@ class Entity:
         self.hp = hpMax
         self.minDamage = minDamage
         self.maxDamage = maxDamage
+        self.armorMax = armorMax
         self.armor = armor
         self.snack = snack
 
