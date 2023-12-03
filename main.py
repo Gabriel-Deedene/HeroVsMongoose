@@ -96,7 +96,7 @@ def main(player,enemy,score):
                 #relancement d'un combat
                 main(player,enemy,score)
 
-            #arrêter les combats et finir
+            #arreter les combats et finir
             case "n":
                 print(f"Le score de votre partie est de {score} ! Félicitations")
 

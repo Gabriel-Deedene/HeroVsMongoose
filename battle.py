@@ -77,6 +77,9 @@ class Battle:
             #attaque basique de l'enemie
             self.round.basicAttackEnemy()
 
+            if self.round.winner == self.round.enemy.name:
+                break
+
             #Winner detection for enemy
             if self.round.winner == self.round.player.name:
                 print ("ERROR - DETECTION WIN BROKEN") #because in this case, it is the enemy who wins
