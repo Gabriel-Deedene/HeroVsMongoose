@@ -18,8 +18,9 @@ class Entity:
         - hp (Int): The curent Health Point of the entity.
         - minDamage (Int): Class.
         - maxDamage (Int): Class.
-        - armor (Int): name of fight winner.
-        - snack (Booleen): name of fight winner.
+        - armorMax (int): The maximum of armor.
+        - armor (Int): The curent armor.
+        - snack (Booleen): To know if Peter have a snack or not.
 
         Returns:
         None

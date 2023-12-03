@@ -1,6 +1,6 @@
 # Local libraries.
 from round import Round
-from entity import Entity
+
     
 class Battle:
     """
@@ -8,7 +8,7 @@ class Battle:
 
     Attributes:
     - round (Round): Class.
-    - score (Int): The number of victories.
+    - nbRounds (Int): The number of rounds.
     """
 
     def __init__(self, round: Round):
@@ -17,18 +17,18 @@ class Battle:
 
         Parameters:
         - round (Round): Class.
-        - score (Int): The number of victories.
+        - nbRounds (Int): The number of rounds.
 
         Returns:
         None
         """
         self.round = round
-        self.score = 0
+        self.nbRounds = 0
     
     
     def run(self):
         """
-        boucle (à revoir)
+        Permet de faire un combat complet en bouclant la classe round.
 
         Parameters:
         - /
@@ -40,33 +40,43 @@ class Battle:
         runBattle = True
 
         while runBattle:
-            
+
+            print(f"Nouveau tour : {self.nbRounds}\n\n")
+
             if (self.round.player.armor>self.round.player.armorMax):
                 self.round.player.armor = self.round.player.armorMax
-                print(f"Debut du nouveau tour, {self.round.player.name} perd son bonus d'armure qui se réduit de moitié : soit {self.round.player.armor}")
+                print(f"Debut du nouveau tour, {self.round.player.name} perd son bonus d'armure qui se réduit de moitié : soit {self.round.player.armor}\n")
 
+            print("")
+            chooseAttack = input(f"C'est au tour de {self.round.player.name} de jouer, que voulez-vous faire ?\nAttaque basique = 'a', Defense = 'z', Snake eyes = 'e', Dernier recours = 'r'\nQuelle compétence vous souhaitez utiliser : ")
+            print("")
 
-            print(self.round.basicAttackPlayer())
+            match chooseAttack:
+                case "a":
+                    self.round.basicAttackPlayer()
+                case "z":
+                    self.round.defenseCapacity()
+                case "e":
+                    self.round.snakeEyesCapacity(self.nbRounds)
+                case "r":
+                    self.round.lastRecoursCapacity()
+
+            self.round.testWin()
+            if self.round.winner != "":
+                runBattle = False
 
             #Winner detection for player
-            if self.round.winner == f"{self.round.player.name} est le gagnant !":
-                self.score = self.score + 1
+            if self.round.winner == self.round.player.name:
                 break
 
-
-            print(self.round.basicAttackEnemy())
+            self.round.basicAttackEnemy()
 
             #Winner detection for enemy
-            if self.round.winner == f"{self.round.player.name} est le gagnant !":
+            if self.round.winner == self.round.player.name:
                 print ("ERROR - DETECTION WIN BROKEN") #because in this case, it is the enemy who wins
+
+            self.nbRounds += 1
         
 
-        return self.round.winner, self.score
+        return self.round.winner
     
-
-hero=Entity("Galdric",20,3,6,1,1,True)
-ratus=Entity("ratus",10,1,2)
-first=Round(hero,ratus)
-firstbattle=Battle(first)
-
-print (firstbattle.run())
