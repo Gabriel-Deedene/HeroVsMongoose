@@ -36,4 +36,11 @@ class Entity:
         self.snack = snack
 
     def __str__(self) -> str:
+        """
+        Retourne une représentation en String de l'entité.
+
+        Returns:
+        String
+        """
+
         return f"{self.name} a {self.hp} HP, il fait entre {self.minDamage} et {self.maxDamage} de dégâts par coup d'épée. Son armure le protège de {self.armor} et son goûter est {self.snack}"

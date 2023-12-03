@@ -37,21 +37,25 @@ class Battle:
         self.round.winner
         """
         
+        #booleen pour savoir quand il faut s'arréter de boucler le combat (utilisé juste en dessous)
         runBattle = True
 
         while runBattle:
-
+            #affichage du nombre de tour
             print(f"Nouveau tour : {self.nbRounds}\n\n")
 
+            #si capacité defense utilisé, alors dans nouveau round, élimination du boost de défence
             if (self.round.player.armor>self.round.player.armorMax):
                 self.round.player.armor = self.round.player.armorMax
                 print(f"Debut du nouveau tour, {self.round.player.name} perd son bonus d'armure qui se réduit de moitié : soit {self.round.player.armor}\n")
 
+            #Choisir la capacité à utliser sur le round
             print("")
             chooseAttack = input(f"C'est au tour de {self.round.player.name} de jouer, que voulez-vous faire ?\nAttaque basique = 'a', Defense = 'z', Snake eyes = 'e', Dernier recours = 'r'\nQuelle compétence vous souhaitez utiliser : ")
             print("")
 
             match chooseAttack:
+                #toujours le même fonctionnement, selon la valeur de l'input, il appelle une fonction présente dans la classe Round
                 case "a":
                     self.round.basicAttackPlayer()
                 case "z":
@@ -61,14 +65,16 @@ class Battle:
                 case "r":
                     self.round.lastRecoursCapacity()
 
+            #test si le joueur ou son enemie à gagné
             self.round.testWin()
             if self.round.winner != "":
                 runBattle = False
 
-            #Winner detection for player
+            #Winner detection for player -> break pour éviter de faire jouer l'enemie alors qu'il est déjà mort
             if self.round.winner == self.round.player.name:
                 break
-
+            
+            #attaque basique de l'enemie
             self.round.basicAttackEnemy()
 
             #Winner detection for enemy
